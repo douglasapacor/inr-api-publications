@@ -1,1 +1,1 @@
-# inr-api-publications
+# Publications API
