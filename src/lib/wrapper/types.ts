@@ -3,8 +3,7 @@ import type { defaultResponse } from "../../cases/types"
 export type settingsLevel = "free" | "controlled" | "full"
 export type attributesSettings = {
   action?: string
-  featureCode?: string
-  groupCode?: string[]
+  feature?: string
   level: settingsLevel
 }
 export type attributes = {

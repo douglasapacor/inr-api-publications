@@ -7,7 +7,11 @@ declare namespace Express {
       finish?: number
     }
     user: {
-      id: number
+      idcliente: number
+      idusuario: number
+      idgrupo_site: number
+      admin: string
+      autorizacao_trabalhista: string
     }
   }
 }

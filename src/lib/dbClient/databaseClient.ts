@@ -1,19 +1,22 @@
-import { PrismaClient } from "@prisma/client"
+import mysql from "mysql2/promise"
+import database from "../../config/database"
 
-let databaseClient: PrismaClient
-
-if (process.env.NODE_ENV === "production") {
-  databaseClient = new PrismaClient({
-    log: ["info", "warn", "error"]
+if (!global.databaseClient) {
+  global.databaseClient = mysql.createPool({
+    host: database.host,
+    user: database.user,
+    database: database.database,
+    password: database.password,
+    waitForConnections: true,
+    connectionLimit: 10,
+    maxIdle: 10,
+    idleTimeout: 60000,
+    queueLimit: 0,
+    enableKeepAlive: true,
+    keepAliveInitialDelay: 0
   })
-} else {
-  if (!global.databaseClient) {
-    global.databaseClient = new PrismaClient({
-      log: ["info", "warn", "error"]
-    })
-  }
-
-  databaseClient = global.databaseClient
 }
+
+databaseClient = global.databaseClient
 
 export default databaseClient
